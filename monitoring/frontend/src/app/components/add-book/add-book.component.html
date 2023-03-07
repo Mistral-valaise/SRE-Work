@@ -1,0 +1,28 @@
+<div>
+    <div class="submit-form">
+        <div *ngIf="!submitted">
+            <div class="form-group">
+                <label for="BookName">BookName</label>
+                <input type="text" class="form-control" id="BookName" required [(ngModel)]="book.BookName" name="BookName" />
+            </div>
+            <div class="form-group">
+                <label for="Price">Price</label>
+                <input class="form-control" id="Price" required [(ngModel)]="book.Price"
+                    name="Price" />
+            </div>
+            <div class="form-group">
+                <label for="Category">Category</label>
+                <input type="text" class="form-control" id="Category" required [(ngModel)]="book.Category" name="Category" />
+            </div>
+            <div class="form-group">
+                <label for="Author">Author</label>
+                <input class="form-control" id="Author" required [(ngModel)]="book.Author" name="Author" />
+            </div>
+            <button (click)="saveBook()" class="btn btn-success">Submit</button>
+        </div>
+        <div *ngIf="submitted">
+            <h4>Book was submitted successfully!</h4>
+            <button class="btn btn-success" (click)="newBook()">Add</button>
+        </div>
+    </div>
+</div>

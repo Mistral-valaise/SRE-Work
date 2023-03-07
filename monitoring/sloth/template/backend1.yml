@@ -1,0 +1,103 @@
+apiVersion: sloth.slok.dev/v1
+kind: PrometheusServiceLevel
+metadata:
+  name: backendchart
+  labels:
+    team: sre
+spec:
+  service: "backendchart"
+  labels:
+    team: sre
+    repo: "teamsre/slo-templates"
+  slos:
+    - name: "latency-256ms"
+      objective: 90
+      description: "Common SLO based on latency-256ms."
+      sli:
+        events:
+          errorQuery: (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[{{.window}}])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.256"}[{{.window}}])))
+          totalQuery: sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[{{.window}}])) > 0
+      alerting:
+        name: backendHighLatencyRate
+        labels:
+          category: "latency-256ms"
+        annotations:
+          summary: "latency-256ms of backend below SLO level"
+        pageAlert:
+          disable: false
+          labels:
+            app: backend
+            severity: critical
+            routing_key: sre
+        ticketAlert:
+          disable: true
+    - name: "latency-512ms"
+      objective: 95
+      description: "Common SLO based on latency-512ms."
+      sli:
+        events:
+          errorQuery: (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[{{.window}}])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.512"}[{{.window}}])))
+          totalQuery: sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[{{.window}}])) > 0
+      alerting:
+        name: backendHighLatencyRate
+        labels:
+          category: "latency-512ms"
+        annotations:
+          summary: "latency-512ms of backend below SLO level"
+        pageAlert:
+          disable: false
+          labels:
+            app: backend
+            severity: critical
+            routing_key: sre
+        ticketAlert:
+          disable: true
+    - name: "latency-1024ms"
+      objective: 99
+      description: "Common SLO based on latency-1024ms."
+      sli:
+        events:
+          errorQuery: sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[{{.window}}])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="1.024"}[{{.window}}]))
+          totalQuery: sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[{{.window}}])) > 0
+      alerting:
+        name: backendHighLatencyRate
+        labels:
+          category: "latency-1024ms"
+        annotations:
+          summary: "latency-1024ms of backend below SLO level"
+        pageAlert:
+          disable: false
+          labels:
+            app: backend
+            severity: critical
+            routing_key: sre
+        ticketAlert:
+          disable: true
+    - name: "availability"
+      objective: 99.5
+      description: "Common SLO based on availability for HTTP request responses."
+      sli:
+        # events:
+        #   errorQuery: sum(rate(http_requests_received_total{job="backendchart",code=~"(5..|429)"}[{{.window}}]))
+        #   totalQuery: sum(rate(http_requests_received_total{job="backendchart"}[{{.window}}]))
+        raw:
+          errorRatioQuery: |
+            (
+              sum(rate(http_requests_received_total{job="backendchart",code=~"(5..|429)"}[{{.window}}]))
+              /
+              (sum(rate(http_requests_received_total{job="backendchart"}[{{.window}}])) > 0)
+            ) OR on() vector(0)
+      alerting:
+        name: backendHighErrorRate
+        labels:
+          category: "availability"
+        annotations:
+          summary: "availability of backend below SLO level"
+        pageAlert:
+          disable: false
+          labels:
+            app: backend
+            severity: critical
+            routing_key: sre
+        ticketAlert:
+          disable: true

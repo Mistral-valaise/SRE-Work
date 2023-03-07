@@ -1,0 +1,248 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 4,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "data-identity-app",
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 14,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "text": {}
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "expr": "count by (app) (ds_service_http_duration_seconds_count{service=\"data-identity-service\", path=\"/v1/health\"})",
+          "refId": "A"
+        }
+      ],
+      "title": "Identity Pods",
+      "transformations": [],
+      "type": "gauge"
+    },
+    {
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "reverse-proxy-app",
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 15,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "text": {}
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "expr": "count by (service) (kube_pod_status_phase{phase=\"Running\",pod=~\"reverse-proxy.*\"})",
+          "refId": "A"
+        }
+      ],
+      "title": "reverse-proxy Pods",
+      "transformations": [],
+      "type": "gauge"
+    },
+    {
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 11
+      },
+      "id": 12,
+      "pluginVersion": "8.0.1",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "count by (service, namespace) (ds_service_http_duration_seconds_count{path=\"/v1/health\", service=\"data-identity-service\"})",
+          "legendFormat": "{{service}}@{{namespace}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Application Status Identity",
+      "trafficLightSettings": {
+        "digits": 0,
+        "fontColor": "rgb(201, 209, 217)",
+        "fontSize": "24px",
+        "greenThreshold": 1,
+        "invertScale": false,
+        "lightsPerLine": 1,
+        "linkTargetBlank": false,
+        "linkTooltip": "",
+        "linkUrl": "",
+        "max": 10000,
+        "noValueNumber": 0,
+        "redThreshold": 0,
+        "renderLink": false,
+        "showTrend": false,
+        "showValue": false,
+        "sortLights": true,
+        "spreadControls": true,
+        "units": "",
+        "width": 80
+      },
+      "transformations": [],
+      "type": "snuids-trafficlights-panel"
+    },
+    {
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 16,
+      "pluginVersion": "8.0.1",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "count by (service, namespace) (kube_pod_status_phase{phase=\"Running\",pod=~\"reverse-proxy.*\"})",
+          "legendFormat": "reverse-proxy@{{namespace}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Application Status reverse-proxy",
+      "trafficLightSettings": {
+        "digits": 0,
+        "fontColor": "rgb(201, 209, 217)",
+        "fontSize": "24px",
+        "greenThreshold": 1,
+        "invertScale": false,
+        "lightsPerLine": 1,
+        "linkTargetBlank": false,
+        "linkTooltip": "",
+        "linkUrl": "",
+        "max": 10000,
+        "noValueNumber": 0,
+        "redThreshold": 0,
+        "renderLink": false,
+        "showTrend": false,
+        "showValue": false,
+        "sortLights": true,
+        "spreadControls": true,
+        "units": "",
+        "width": 80
+      },
+      "transformations": [],
+      "type": "snuids-trafficlights-panel"
+    }
+  ],
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Status Page",
+  "uid": "status",
+  "version": 12,
+  "weekStart": ""
+}

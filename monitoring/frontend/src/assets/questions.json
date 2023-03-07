@@ -1,0 +1,165 @@
+{
+    "questions": [{
+            "questionText": "What is the full form of Devops??",
+            "options": [{
+                    "text": "Development And Operations",
+                    "correct": true
+                },
+                {
+                    "text": "Digital and Operations"
+                },
+                {
+                    "text": "Drive and Operations"
+                },
+                {
+                    "text": "None of the above"
+                }
+            ],
+            "explanation": "Development And Operations is the full form of Devops."
+        },
+        {
+            "questionText": "Which of the following methods cannot be tested by JUnit test class?",
+            "options": [{
+                    "text": "Protected Methods"
+                },
+                {
+                    "text": "Public Methods"
+                },
+                {
+                    "text": "None of the above"
+                },
+                {
+                    "text": "Private Methods",
+                    "correct": true
+                }
+            ],
+            "explanation": "Private Methods cannot be tested by JUnit test class"
+        },
+        {
+            "questionText": "Which command is used to remove an empty directory?",
+            "options": [{
+                    "text": "remove"
+                },
+                {
+                    "text": "rmdir",
+                    "correct": true
+                },
+                {
+                    "text": "rdir"
+                },
+                {
+                    "text": "rm"
+                }
+            ],
+            "explanation": "rmdir command is used to remove an empty directory"
+        },
+        {
+            "questionText": "Which of the followings are the popular tools for DevOps?",
+            "options": [{
+                    "text": "Jenkins & Monit"
+                },
+                {
+                    "text": "All of the above",
+                    "correct": true
+                },
+                {
+                    "text": "Nagios & ELK"
+                },
+                {
+                    "text": "Jenkins & Ansible"
+                }
+            ],
+            "explanation": "All of the above"
+        },
+        {
+            "questionText": "What are the key components of DevOps?",
+            "options": [{
+                    "text": "All of the above",
+                    "correct": true
+                },
+                {
+                    "text": "Continuous Integration"
+                },
+                {
+                    "text": "Continuous Testing"
+                },
+                {
+                    "text": "ontinuous Delivery & Monitoring"
+                }
+            ],
+            "explanation": "All of the above"
+        },
+        {
+            "questionText": "DevOps is an extension of ...............",
+            "options": [{
+                    "text": "QA"
+                },
+                {
+                    "text": "Waterfall"
+                },
+                {
+                    "text": "None of the above"
+                },
+                {
+                    "text": "Agile",
+                    "correct": true
+                }
+            ],
+            "explanation": "DevOps is an extension of  Agile"
+        },
+        {
+            "questionText": "Which of the following team gets priority in DevOps",
+            "options": [{
+                    "text": "Operational Team"
+                },
+                {
+                    "text": "Operational Team & Development Team",
+                    "correct": true
+                },
+                {
+                    "text": "Development Team"
+                },
+                {
+                    "text": "None of the above"
+                }
+            ],
+            "explanation": "Operational Team & Development Team"
+        },
+        {
+            "questionText": "Which of the following methodologies does least impact the establishment of DevOps methodology?",
+            "options": [{
+                    "text": "Waterfall Software Delivery",
+                    "correct": true
+                },
+                {
+                    "text": "Agile Software Delivery"
+                },
+                {
+                    "text": "Lean Manufacturing"
+                },
+                {
+                    "text": "Continuous Software Delivery"
+                }
+            ],
+            "explanation": "Waterfall Software Delivery"
+        },
+        {
+            "questionText": "What does pipeline in continuous delivery refer to?",
+            "options": [{
+                    "text": "All of the above",
+                    "correct": true
+                },
+                {
+                    "text": "Workflows"
+                },
+                {
+                    "text": "Activities"
+                },
+                {
+                    "text": "Automation"
+                }
+            ],
+            "explanation": "All of the above"
+        }
+    ]
+}

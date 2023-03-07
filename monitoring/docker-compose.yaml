@@ -1,0 +1,144 @@
+## docker-compose.yml ##
+#--------> version defintion <--------------------
+version: '3'
+#--------> Set up Volumes <----------------------- 
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+
+#--------> Set up Network <-----------------------
+networks:
+  auth-network:
+    driver: bridge
+
+#--------> Service section <-----------------------
+services:
+  frontend:
+    container_name: dc-frontend
+    hostname: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: frontend
+    depends_on:
+      - backend
+      - mongoexpress
+    ports:
+      - 8089:8080
+    networks:
+      - auth-network
+
+
+  node_exporter:
+    image: 'quay.io/prometheus/node-exporter'
+    container_name: 'node_exporter'
+    hostname: node-exporter
+    ports:
+    - '9200:9200'
+    networks:
+      - auth-network
+
+  nginx-exporter:
+    image: fish/nginx-exporter
+    container_name: 'nginx_exporter'
+    hostname: nginx-exporter
+    command:
+    - '-nginx.scrape_uri=http://frontend:8080/stub_status'
+    ports:
+    - '9113:9113'
+    networks:
+      - auth-network
+
+  backend:
+    container_name: dc-backend
+    hostname: backend
+    build:
+      context: ./backend/
+    depends_on:
+      - mongodb
+      - mongoexpress
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - MongoDB:ConnectionString=mongodb://testuser:testpassword@mongodb:27017/testdb
+      - MongoDB:DatabaseName=testdb
+      - MongoDB:BooksCollectionName=Books
+    ports:
+      - 8080:8080
+    networks:
+      - auth-network
+
+  mongodb:
+    container_name: mongodb
+    hostname: mongodb
+    image: docker.io/mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: testadminuser
+      MONGO_INITDB_ROOT_PASSWORD: testadminpassword
+      MONGO_INITDB_DATABASE: testdb
+    volumes:
+      - ./init-db-book.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - auth-network
+
+  mongoexpress:
+    container_name: dc-mongoexpress
+    hostname: mexpress
+    image: docker.io/mongo-express:latest
+    restart: always
+    depends_on:
+      - mongodb
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: testadminuser
+      ME_CONFIG_MONGODB_ADMINPASSWORD: testadminpassword
+      ME_CONFIG_MONGODB_URL: mongodb://testadminuser:testadminpassword@mongodb:27017/
+    networks:
+      - auth-network
+
+  alertmanager:
+    container_name: alertmanager
+    hostname: alertmanager
+    image: prom/alertmanager
+    volumes:
+      - ./alertmanager.conf:/etc/alertmanager/alertmanager.conf
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.conf'
+    ports:
+      - 9094:9094
+    networks:
+      - auth-network
+
+  prometheus:
+    container_name: prometheus
+    hostname: prometheus
+    image: prom/prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    links:
+      - alertmanager:alertmanager
+    ports:
+      - 9090:9090
+    networks:
+      - auth-network
+
+  grafana:
+    container_name: grafana
+    hostname: grafana
+    image: grafana/grafana
+    volumes:
+      - ./grafana_config.ini:/etc/grafana/config.ini
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/provisioning/dashboards:/var/lib/grafana/dashboards
+    ports:
+      - 3000:3000
+    networks:
+      - auth-network

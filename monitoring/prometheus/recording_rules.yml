@@ -1,0 +1,790 @@
+groups:
+- name: sloth-slo-sli-recordings-backend-backend-latency-256ms
+  rules:
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[5m])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.256"}[5m]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[5m])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      sloth_window: 5m
+      team: sre
+    record: slo:sli_error:ratio_rate5m
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[30m])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.256"}[30m]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[30m])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      sloth_window: 30m
+      team: sre
+    record: slo:sli_error:ratio_rate30m
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1h])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.256"}[1h]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1h])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      sloth_window: 1h
+      team: sre
+    record: slo:sli_error:ratio_rate1h
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[2h])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.256"}[2h]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[2h])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      sloth_window: 2h
+      team: sre
+    record: slo:sli_error:ratio_rate2h
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[6h])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.256"}[6h]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[6h])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      sloth_window: 6h
+      team: sre
+    record: slo:sli_error:ratio_rate6h
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1d])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.256"}[1d]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1d])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      sloth_window: 1d
+      team: sre
+    record: slo:sli_error:ratio_rate1d
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[3d])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.256"}[3d]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[3d])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      sloth_window: 3d
+      team: sre
+    record: slo:sli_error:ratio_rate3d
+  - expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"}[30d])
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      sloth_window: 30d
+      team: sre
+    record: slo:sli_error:ratio_rate30d
+- name: sloth-slo-meta-recordings-backend-backend-latency-256ms
+  rules:
+  - expr: vector(0.9)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      team: sre
+    record: slo:objective:ratio
+  - expr: vector(1-0.9)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      team: sre
+    record: slo:error_budget:ratio
+  - expr: vector(30)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      team: sre
+    record: slo:time_period:days
+  - expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      team: sre
+    record: slo:current_burn_rate:ratio
+  - expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      team: sre
+    record: slo:period_burn_rate:ratio
+  - expr: 1 - slo:period_burn_rate:ratio{sloth_id="backend-backend-latency-256ms",
+      sloth_service="backend", sloth_slo="backend-latency-256ms"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      team: sre
+    record: slo:period_error_budget_remaining:ratio
+  - expr: vector(1)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-256ms
+      sloth_mode: cli-gen-k8s
+      sloth_objective: "90"
+      sloth_service: backend
+      sloth_slo: backend-latency-256ms
+      sloth_spec: sloth.slok.dev/v1
+      sloth_version: v0.11.0
+      team: sre
+    record: sloth_slo_info
+- name: sloth-slo-alerts-backend-backend-latency-256ms
+  rules:
+  - alert: backendHighLatencyRate
+    annotations:
+      summary: latency-256ms of backend below SLO level
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"} > (14.4 * 0.1)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"} > (14.4 * 0.1)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"} > (6 * 0.1)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="backend-backend-latency-256ms", sloth_service="backend", sloth_slo="backend-latency-256ms"} > (6 * 0.1)) without (sloth_window)
+      )
+    labels:
+      app: backend
+      category: latency-256ms
+      routing_key: sre
+      severity: critical
+      sloth_severity: page
+- name: sloth-slo-sli-recordings-backend-backend-latency-512ms
+  rules:
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[5m])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.512"}[5m]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[5m])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      sloth_window: 5m
+      team: sre
+    record: slo:sli_error:ratio_rate5m
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[30m])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.512"}[30m]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[30m])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      sloth_window: 30m
+      team: sre
+    record: slo:sli_error:ratio_rate30m
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1h])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.512"}[1h]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1h])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      sloth_window: 1h
+      team: sre
+    record: slo:sli_error:ratio_rate1h
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[2h])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.512"}[2h]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[2h])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      sloth_window: 2h
+      team: sre
+    record: slo:sli_error:ratio_rate2h
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[6h])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.512"}[6h]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[6h])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      sloth_window: 6h
+      team: sre
+    record: slo:sli_error:ratio_rate6h
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1d])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.512"}[1d]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1d])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      sloth_window: 1d
+      team: sre
+    record: slo:sli_error:ratio_rate1d
+  - expr: |
+      ((sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[3d])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="0.512"}[3d]))))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[3d])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      sloth_window: 3d
+      team: sre
+    record: slo:sli_error:ratio_rate3d
+  - expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"}[30d])
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      sloth_window: 30d
+      team: sre
+    record: slo:sli_error:ratio_rate30d
+- name: sloth-slo-meta-recordings-backend-backend-latency-512ms
+  rules:
+  - expr: vector(0.95)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      team: sre
+    record: slo:objective:ratio
+  - expr: vector(1-0.95)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      team: sre
+    record: slo:error_budget:ratio
+  - expr: vector(30)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      team: sre
+    record: slo:time_period:days
+  - expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      team: sre
+    record: slo:current_burn_rate:ratio
+  - expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      team: sre
+    record: slo:period_burn_rate:ratio
+  - expr: 1 - slo:period_burn_rate:ratio{sloth_id="backend-backend-latency-512ms",
+      sloth_service="backend", sloth_slo="backend-latency-512ms"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      team: sre
+    record: slo:period_error_budget_remaining:ratio
+  - expr: vector(1)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-512ms
+      sloth_mode: cli-gen-k8s
+      sloth_objective: "95"
+      sloth_service: backend
+      sloth_slo: backend-latency-512ms
+      sloth_spec: sloth.slok.dev/v1
+      sloth_version: v0.11.0
+      team: sre
+    record: sloth_slo_info
+- name: sloth-slo-alerts-backend-backend-latency-512ms
+  rules:
+  - alert: backendHighLatencyRate
+    annotations:
+      summary: latency-512ms of backend below SLO level
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"} > (14.4 * 0.05)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"} > (14.4 * 0.05)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"} > (6 * 0.05)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="backend-backend-latency-512ms", sloth_service="backend", sloth_slo="backend-latency-512ms"} > (6 * 0.05)) without (sloth_window)
+      )
+    labels:
+      app: backend
+      category: latency-512ms
+      routing_key: sre
+      severity: critical
+      sloth_severity: page
+- name: sloth-slo-sli-recordings-backend-backend-latency-1024ms
+  rules:
+  - expr: |
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[5m])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="1.024"}[5m])))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[5m])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      sloth_window: 5m
+      team: sre
+    record: slo:sli_error:ratio_rate5m
+  - expr: |
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[30m])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="1.024"}[30m])))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[30m])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      sloth_window: 30m
+      team: sre
+    record: slo:sli_error:ratio_rate30m
+  - expr: |
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1h])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="1.024"}[1h])))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1h])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      sloth_window: 1h
+      team: sre
+    record: slo:sli_error:ratio_rate1h
+  - expr: |
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[2h])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="1.024"}[2h])))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[2h])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      sloth_window: 2h
+      team: sre
+    record: slo:sli_error:ratio_rate2h
+  - expr: |
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[6h])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="1.024"}[6h])))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[6h])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      sloth_window: 6h
+      team: sre
+    record: slo:sli_error:ratio_rate6h
+  - expr: |
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1d])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="1.024"}[1d])))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[1d])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      sloth_window: 1d
+      team: sre
+    record: slo:sli_error:ratio_rate1d
+  - expr: |
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[3d])) - sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="1.024"}[3d])))
+      /
+      (sum(increase(http_request_duration_seconds_bucket{job="backendchart", le="+Inf"}[3d])) > 0)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      sloth_window: 3d
+      team: sre
+    record: slo:sli_error:ratio_rate3d
+  - expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"}[30d])
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      sloth_window: 30d
+      team: sre
+    record: slo:sli_error:ratio_rate30d
+- name: sloth-slo-meta-recordings-backend-backend-latency-1024ms
+  rules:
+  - expr: vector(0.99)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      team: sre
+    record: slo:objective:ratio
+  - expr: vector(1-0.99)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      team: sre
+    record: slo:error_budget:ratio
+  - expr: vector(30)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      team: sre
+    record: slo:time_period:days
+  - expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      team: sre
+    record: slo:current_burn_rate:ratio
+  - expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      team: sre
+    record: slo:period_burn_rate:ratio
+  - expr: 1 - slo:period_burn_rate:ratio{sloth_id="backend-backend-latency-1024ms",
+      sloth_service="backend", sloth_slo="backend-latency-1024ms"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      team: sre
+    record: slo:period_error_budget_remaining:ratio
+  - expr: vector(1)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-latency-1024ms
+      sloth_mode: cli-gen-k8s
+      sloth_objective: "99"
+      sloth_service: backend
+      sloth_slo: backend-latency-1024ms
+      sloth_spec: sloth.slok.dev/v1
+      sloth_version: v0.11.0
+      team: sre
+    record: sloth_slo_info
+- name: sloth-slo-alerts-backend-backend-latency-1024ms
+  rules:
+  - alert: backendHighLatencyRate
+    annotations:
+      summary: latency-1024ms of backend below SLO level
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"} > (14.4 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"} > (14.4 * 0.01)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"} > (6 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="backend-backend-latency-1024ms", sloth_service="backend", sloth_slo="backend-latency-1024ms"} > (6 * 0.01)) without (sloth_window)
+      )
+    labels:
+      app: backend
+      category: latency-1024ms
+      routing_key: sre
+      severity: critical
+      sloth_severity: page
+- name: sloth-slo-sli-recordings-backend-backend-availability
+  rules:
+  - expr: |-
+      ((
+        sum(rate(http_requests_received_total{job="backendchart",code=~"5.*"}[5m]))
+        /
+        (sum(rate(http_requests_received_total{job="backendchart"}[5m])) > 0)
+      ) OR on() vector(0)
+      )
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      sloth_window: 5m
+      team: sre
+    record: slo:sli_error:ratio_rate5m
+  - expr: |-
+      ((
+        sum(rate(http_requests_received_total{job="backendchart",code=~"5.*"}[30m]))
+        /
+        (sum(rate(http_requests_received_total{job="backendchart"}[30m])) > 0)
+      ) OR on() vector(0)
+      )
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      sloth_window: 30m
+      team: sre
+    record: slo:sli_error:ratio_rate30m
+  - expr: |-
+      ((
+        sum(rate(http_requests_received_total{job="backendchart",code=~"5.*"}[1h]))
+        /
+        (sum(rate(http_requests_received_total{job="backendchart"}[1h])) > 0)
+      ) OR on() vector(0)
+      )
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      sloth_window: 1h
+      team: sre
+    record: slo:sli_error:ratio_rate1h
+  - expr: |-
+      ((
+        sum(rate(http_requests_received_total{job="backendchart",code=~"5.*"}[2h]))
+        /
+        (sum(rate(http_requests_received_total{job="backendchart"}[2h])) > 0)
+      ) OR on() vector(0)
+      )
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      sloth_window: 2h
+      team: sre
+    record: slo:sli_error:ratio_rate2h
+  - expr: |-
+      ((
+        sum(rate(http_requests_received_total{job="backendchart",code=~"5.*"}[6h]))
+        /
+        (sum(rate(http_requests_received_total{job="backendchart"}[6h])) > 0)
+      ) OR on() vector(0)
+      )
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      sloth_window: 6h
+      team: sre
+    record: slo:sli_error:ratio_rate6h
+  - expr: |-
+      ((
+        sum(rate(http_requests_received_total{job="backendchart",code=~"5.*"}[1d]))
+        /
+        (sum(rate(http_requests_received_total{job="backendchart"}[1d])) > 0)
+      ) OR on() vector(0)
+      )
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      sloth_window: 1d
+      team: sre
+    record: slo:sli_error:ratio_rate1d
+  - expr: |-
+      ((
+        sum(rate(http_requests_received_total{job="backendchart",code=~"5.*"}[3d]))
+        /
+        (sum(rate(http_requests_received_total{job="backendchart"}[3d])) > 0)
+      ) OR on() vector(0)
+      )
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      sloth_window: 3d
+      team: sre
+    record: slo:sli_error:ratio_rate3d
+  - expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"}[30d])
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      sloth_window: 30d
+      team: sre
+    record: slo:sli_error:ratio_rate30d
+- name: sloth-slo-meta-recordings-backend-backend-availability
+  rules:
+  - expr: vector(0.995)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      team: sre
+    record: slo:objective:ratio
+  - expr: vector(1-0.995)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      team: sre
+    record: slo:error_budget:ratio
+  - expr: vector(30)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      team: sre
+    record: slo:time_period:days
+  - expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      team: sre
+    record: slo:current_burn_rate:ratio
+  - expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      team: sre
+    record: slo:period_burn_rate:ratio
+  - expr: 1 - slo:period_burn_rate:ratio{sloth_id="backend-backend-availability",
+      sloth_service="backend", sloth_slo="backend-availability"}
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_service: backend
+      sloth_slo: backend-availability
+      team: sre
+    record: slo:period_error_budget_remaining:ratio
+  - expr: vector(1)
+    labels:
+      repo: teamsre/slo-templates
+      sloth_id: backend-backend-availability
+      sloth_mode: cli-gen-k8s
+      sloth_objective: "99.5"
+      sloth_service: backend
+      sloth_slo: backend-availability
+      sloth_spec: sloth.slok.dev/v1
+      sloth_version: v0.11.0
+      team: sre
+    record: sloth_slo_info
+- name: sloth-slo-alerts-backend-backend-availability
+  rules:
+  - alert: backendHighErrorRate
+    annotations:
+      summary: availability of backend below SLO level
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"} > (14.4 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"} > (14.4 * 0.005)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"} > (6 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="backend-backend-availability", sloth_service="backend", sloth_slo="backend-availability"} > (6 * 0.005)) without (sloth_window)
+      )
+    labels:
+      app: backend
+      category: availability
+      routing_key: sre
+      severity: critical
+      sloth_severity: page
