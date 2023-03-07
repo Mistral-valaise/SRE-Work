@@ -32,10 +32,10 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet("time")]
-    public ActionResult<string> City()
+    public async Task<ActionResult> City()
     {
         Thread.Sleep(TimeSpan.FromSeconds(7));
-        return "Berlin";
+        return Ok(20);
     }
 
     [HttpGet("error")]

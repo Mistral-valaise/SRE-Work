@@ -15,16 +15,23 @@ export class ErrorComponent {
     protected Response: string = "";
 
     public sendRequest(type : string){
-        console.log("type");
         if(type == null){
             return;
         }
         switch(type){
             case "500":{
-                this.requestService.sendGetRequest("https://localhost:7038/weatherforecast/test500").subscribe(response => {
-                    this.Response = response;
-                })
-                console.log("500 req");
+                this.requestService.sendGetRequest("https://localhost:7038/weatherforecast/test500").subscribe(response => response, error => {
+                    this.Response = "oops 500 error :D";
+                });
+                break;
+            }
+            case "time":{
+                console.log("time");
+                this.requestService.sendGetRequest("https://localhost:7038/weatherforecast/time").subscribe(response => {
+                    this.Response = "Berlin, but from agnular";
+                }, error => {
+                    this.Response = error;
+                });
                 break;
             }
                 
