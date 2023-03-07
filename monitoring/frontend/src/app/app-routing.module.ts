@@ -4,6 +4,7 @@ import { AppAuthGuard } from './auth/app.auth.guard';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
+import { ErrorComponent } from './components/error/error.component';
 import { QuestionComponent } from './question/question.component';
 import { SloComponent } from './slo/slo.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'quiz', component: WelcomeComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'slos', component: SloComponent },
+  { path: 'error', component: ErrorComponent },
   {
     path: 'books/:id',
   component: BookDetailsComponent,

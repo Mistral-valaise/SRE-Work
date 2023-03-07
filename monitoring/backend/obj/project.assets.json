@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
+    "net7.0": {
       "DnsClient/1.6.1": {
         "type": "package",
         "dependencies": {
@@ -1288,7 +1288,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0": [
+    "net7.0": [
       "MongoDB.Driver >= 2.17.1",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "prometheus-net >= 7.0.0",
@@ -1296,29 +1296,29 @@
     ]
   },
   "packageFolders": {
-    "/Users/mistralnembot/.nuget/packages/": {}
+    "/Users/odilov/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mistralnembot/devops/kw45/work-sre/monitoring/backend/BookStoreApi.csproj",
+      "projectUniqueName": "/Users/odilov/Github/SRE-Work/monitoring/backend/BookStoreApi.csproj",
       "projectName": "BookStoreApi",
-      "projectPath": "/Users/mistralnembot/devops/kw45/work-sre/monitoring/backend/BookStoreApi.csproj",
-      "packagesPath": "/Users/mistralnembot/.nuget/packages/",
-      "outputPath": "/Users/mistralnembot/devops/kw45/work-sre/monitoring/backend/obj/",
+      "projectPath": "/Users/odilov/Github/SRE-Work/monitoring/backend/BookStoreApi.csproj",
+      "packagesPath": "/Users/odilov/.nuget/packages/",
+      "outputPath": "/Users/odilov/Github/SRE-Work/monitoring/backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/mistralnembot/.nuget/NuGet/NuGet.Config"
+        "/Users/odilov/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net7.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "projectReferences": {}
         }
       },
@@ -1329,8 +1329,8 @@
       }
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6.0",
+      "net7.0": {
+        "targetAlias": "net7.0",
         "dependencies": {
           "MongoDB.Driver": {
             "target": "Package",
@@ -1368,7 +1368,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }

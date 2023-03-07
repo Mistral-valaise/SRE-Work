@@ -15,6 +15,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { QuestionComponent } from './question/question.component';
 import { ChangeBgDirective } from './change-bg.directive';
 import { SloComponent } from './slo/slo.component';
+import { ErrorComponent } from './components/error/error.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -43,7 +44,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     WelcomeComponent,
     QuestionComponent,
     ChangeBgDirective,
-    SloComponent
+    SloComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

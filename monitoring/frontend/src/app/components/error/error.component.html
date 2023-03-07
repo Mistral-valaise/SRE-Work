@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="menu">
+        <button class="toggle">Send Request</button>
+        <ul class="list">
+            <li class="list-item" style="--delay: 0.2s" (click)="sendRequest('500')">
+                Test 500
+            </li>
+            <li class="list-item" style="--delay: 0.4s">Test 501</li>
+            <li class="list-item" style="--delay: 0.6s">Test 502</li>
+            <li class="list-item" style="--delay: 0.8s">Test 503</li>
+        </ul>
+
+        <div>
+            Server's response: {{Response}}
+        </div>
+    </div>
+</div>
