@@ -1,11 +1,11 @@
 <div class="container">
     <div class="menu">
-        <button class="toggle">Send Request</button>
+        <button class="toggle">Send Errors Requests</button>
         <ul class="list">
-            <li class="list-item" style="--delay: 0.2s" (click)="sendRequest('500')">Test 500</li>
-            <li class="list-item" style="--delay: 0.4s">Test 501 endpoint</li>
-            <li class="list-item" style="--delay: 0.6s">Test 502 endpoint</li>
-            <li class="list-item" style="--delay: 0.9s" (click)="sendRequest('time')">Test time endpoint</li>
+            <li class="list-item" style="--delay: 0.2s" (click)="sendRequest('500')">Test 500 endpoint</li>
+            <li class="list-item" style="--delay: 0.4s" (click)="sendRequest('501')">Test 501 endpoint</li>
+            <li class="list-item" style="--delay: 0.6s" (click)="sendRequest('502')">Test 502 endpoint</li>
+            <li class="list-item" style="--delay: 0.9s" (click)="sendRequest('time')">Test latency 7s endpoint</li>
         </ul>
 
         <div>

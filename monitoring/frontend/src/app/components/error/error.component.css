@@ -31,13 +31,13 @@ html {
   all: unset;
   background-color: dodgerblue;
   color: white;
-  width: 150px;
+  width: 200px;
   padding: 10px;
   font-weight: 700;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
